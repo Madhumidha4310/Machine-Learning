@@ -180,6 +180,7 @@ Train the Random Forest Classifier.
 Predict customer churn on the test data.
 Evaluate the model using accuracy.
 Analyze the prediction results.
+
 Output
 
 The project produces:
@@ -190,12 +191,14 @@ Customer churn distribution plot
 Trained Random Forest model
 Customer churn predictions
 Model accuracy score
+
 Advantages
 Easy to understand implementation.
 Fast training using Random Forest.
 Handles both numerical and categorical data.
 Good prediction accuracy.
 Suitable for banking customer churn prediction.
+
 Future Improvements
 Hyperparameter tuning using GridSearchCV.
 Cross-validation for better model evaluation.
