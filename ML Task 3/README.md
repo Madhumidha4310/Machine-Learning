@@ -90,7 +90,6 @@ Final cleaned dataset:
 
 Cleaned_Dataset.csv
 
-
 ---
 
 ## 📊 Exploratory Data Analysis
@@ -133,6 +132,7 @@ The Elbow Method is used to identify the suitable number of clusters.
 
 Output:
 
+<img width="800" height="500" alt="Elbow_Method" src="https://github.com/user-attachments/assets/9caa9e99-9612-4288-9d45-e223521597cb" />
 
 ---
 
@@ -158,7 +158,7 @@ A scatter plot is created to understand the relationship between property area a
 
 Output:
 
-
+<img width="1000" height="600" alt="Area_vs_Price" src="https://github.com/user-attachments/assets/8208708c-4312-4c72-8616-fd363947a708" />
 
 ---
 
@@ -221,21 +221,20 @@ Marker Colors:
 
 ## Step 1: Install Required Libraries
 
-```bash
-pip install pandas numpy matplotlib folium scikit-learn
+- `pip install pandas numpy matplotlib folium scikit-learn`
 
 Step 2: Upload Dataset
 
 Place these files:
 
-train_part1.csv
-train_part2.csv
+- `train_part1.csv`
+- `train_part2.csv`
 
 Step 3: Run Notebook
 
 Open:
 
-Real_Estate_Clustering.ipynb
+- `Real_Estate_Clustering.ipynb`
 
 Run all cells.
 
