@@ -239,11 +239,11 @@ Open:
 Run all cells.
 
 # 📌 Future Improvements
-Add Deep Learning based price prediction
-Build a web dashboard
-Add real-time property data
-Implement house price prediction model
-Deploy using Streamlit
+- Add Deep Learning based price prediction
+- Build a web dashboard
+- Add real-time property data
+- Implement house price prediction model
+- Deploy using Streamlit
 
 # Author
 
