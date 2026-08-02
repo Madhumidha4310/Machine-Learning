@@ -122,18 +122,6 @@ Examples include:
 - Refund not received.
 
 ---
-
-## Project Structure
-
-Customer-Feedback-Classification/
-│
-├── README.md
-├── Customer_feedback.xlsx
-├── customer_feedback_classification.ipynb
-│
-└── Output/
-    ├── classification_report.txt
-    └── model_results.txt
     
 ## How to Run the Project
 
@@ -160,6 +148,12 @@ The notebook will display:
 - Accuracy
 - Classification report
 - Predictions for new customer feedback
+
+---
+
+## Output
+
+<img width="782" height="622" alt="Screenshot 2026-08-02 200902" src="https://github.com/user-attachments/assets/036bdd94-1842-4281-a025-13a96d0dd867" />
 
 ---
 
