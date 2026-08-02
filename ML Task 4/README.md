@@ -1,6 +1,6 @@
-#Customer Feedback Classification Using Machine Learning
+# Customer Feedback Classification Using Machine Learning
 
-##Project Overview
+## Project Overview
 
 This project focuses on automatically classifying customer feedback into different categories using Machine Learning and Natural Language Processing (NLP).
 
@@ -8,42 +8,42 @@ The system analyzes customer feedback messages and predicts the appropriate cate
 
 ---
 
-##Categories
+## Categories
 
 The customer feedback is classified into the following categories:
 
--Billing
--General Inquiry
--Technical Support
--Delivery
--Product
+- Billing
+- General Inquiry
+- Technical Support
+- Delivery
+- Product
 
 ---
 
-##Dataset
+## Dataset
 
 The dataset contains two main columns:
 
--Feedback – The customer's message or complaint.
--Category – The corresponding category of the customer feedback.
+- Feedback – The customer's message or complaint.
+- Category – The corresponding category of the customer feedback.
 
 The dataset includes customer feedback related to billing issues, product problems, delivery concerns, technical difficulties, and general questions.
 
 ---
 
-##Technologies Used
+## Technologies Used
 
--Python
--Pandas
--NumPy
--Scikit-learn
--Natural Language Processing (NLP)
--TF-IDF Vectorization
--Machine Learning Classification
+- Python
+- Pandas
+- NumPy
+- Scikit-learn
+- Natural Language Processing (NLP)
+- TF-IDF Vectorization
+- Machine Learning Classification
 
 ---
 
-##Project Workflow
+## Project Workflow
 
 1.Load the customer feedback dataset.
 2.Explore and understand the dataset.
@@ -58,90 +58,90 @@ The dataset includes customer feedback related to billing issues, product proble
 
 ---
 
-##Model Evaluation
+## Model Evaluation
 
 The model performance is evaluated using:
 
--Accuracy
--Precision
--Recall
--F1-Score
--Classification Report
+- Accuracy
+- Precision
+- Recall
+- F1-Score
+- Classification Report
 
 These evaluation metrics help determine how effectively the model classifies customer feedback into the correct categories.
 
 ---
 
-##Sample Categories
+## Sample Categories
 
-###Product
+### Product
 
 Examples of product-related feedback include:
 
--Wrong color received and I need help.
--Wrong size received.
--Product arrived broken.
--Button not working.
--Device overheats.
+- Wrong color received and I need help.
+- Wrong size received.
+- Product arrived broken.
+- Button not working.
+- Device overheats.
 
-###General Inquiry
-
-Examples include:
-
--Is gift wrapping available?
--Can I change my address?
--Can I cancel my order?
--Do you offer discounts?
-
-###Technical Support
+### General Inquiry
 
 Examples include:
 
--Checkout page not loading.
--Password reset not working.
--Cannot log in.
--Search feature not working.
--Mobile app closes automatically.
+- Is gift wrapping available?
+- Can I change my address?
+- Can I cancel my order?
+- Do you offer discounts?
 
-###Delivery
-
-Examples include:
-
--Package not received.
--Order still in transit.
--Package not received since yesterday.
--Courier delivered to the wrong address.
-
-###Billing
+### Technical Support
 
 Examples include:
 
--Refund is delayed.
--Invoice is incorrect.
--I was charged twice.
--Refund not received.
+- Checkout page not loading.
+- Password reset not working.
+- Cannot log in.
+- Search feature not working.
+- Mobile app closes automatically.
+
+### Delivery
+
+Examples include:
+
+- Package not received.
+- Order still in transit.
+- Package not received since yesterday.
+- Courier delivered to the wrong address.
+
+### Billing
+
+Examples include:
+
+- Refund is delayed.
+- Invoice is incorrect.
+- I was charged twice.
+- Refund not received.
 
 ---
 
-##Applications
+## Applications
 
 This project can be used in:
 
--Customer Support Automation
--Help Desk Systems
--E-commerce Platforms
--Complaint Management Systems
--Automated Ticket Classification
--Customer Service Chatbots
+- Customer Support Automation
+- Help Desk Systems
+- E-commerce Platforms
+- Complaint Management Systems
+- Automated Ticket Classification
+- Customer Service Chatbots
 
 ---
 
-##Future Enhancements
+## Future Enhancements
 
--Add more customer feedback data.
--Improve text preprocessing.
--Compare multiple Machine Learning algorithms.
--Use Deep Learning models for better text classification.
--Create a web-based interface for real-time predictions.
--Integrate the model with a customer support system.
--Deploy the trained model as an online API.
+- Add more customer feedback data.
+- Improve text preprocessing.
+- Compare multiple Machine Learning algorithms.
+- Use Deep Learning models for better text classification.
+- Create a web-based interface for real-time predictions.
+- Integrate the model with a customer support system.
+- Deploy the trained model as an online API.
