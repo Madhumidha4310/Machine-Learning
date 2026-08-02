@@ -45,16 +45,16 @@ The dataset includes customer feedback related to billing issues, product proble
 
 ## Project Workflow
 
-** 1.Load the customer feedback dataset. **
-** 2.Explore and understand the dataset. **
-3.Check the distribution of feedback categories.
-4.Preprocess the text data.
-5.Convert text into numerical features using TF-IDF Vectorization.
-6.Split the dataset into training and testing data.
-7.Train a Machine Learning classification model.
-8.Predict categories for unseen customer feedback.
-9.Evaluate model performance using accuracy and classification metrics.
-10.Test the model with new customer feedback.
+- 1.Load the customer feedback dataset. 
+- 2.Explore and understand the dataset. 
+- 3.Check the distribution of feedback categories.
+- 4.Preprocess the text data.
+- 5.Convert text into numerical features using TF-IDF Vectorization.
+- 6.Split the dataset into training and testing data.
+- 7.Train a Machine Learning classification model.
+- 8.Predict categories for unseen customer feedback.
+- 9.Evaluate model performance using accuracy and classification metrics.
+- 10.Test the model with new customer feedback.
 
 ---
 
