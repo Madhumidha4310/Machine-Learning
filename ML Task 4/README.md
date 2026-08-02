@@ -123,6 +123,46 @@ Examples include:
 
 ---
 
+## Project Structure
+
+Customer-Feedback-Classification/
+│
+├── README.md
+├── Customer_feedback.xlsx
+├── customer_feedback_classification.ipynb
+│
+└── Output/
+    ├── classification_report.txt
+    └── model_results.txt
+    
+## How to Run the Project
+
+Step 1: Install Required Libraries
+pip install pandas openpyxl scikit-learn numpy
+
+Step 2: Open the Notebook
+Open the following file using Google Colab or Jupyter Notebook:
+customer_feedback_classification.ipynb
+
+Step 3: Upload Dataset
+Upload:
+Customer_feedback.xlsx
+
+Step 4: Run the Notebook
+Execute all cells in order.
+
+Step 5: Check Results
+The notebook will display:
+
+- Dataset information
+- Category distribution
+- Model predictions
+- Accuracy
+- Classification report
+- Predictions for new customer feedback
+
+---
+
 ## Applications
 
 This project can be used in:
