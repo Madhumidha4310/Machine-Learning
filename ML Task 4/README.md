@@ -45,8 +45,8 @@ The dataset includes customer feedback related to billing issues, product proble
 
 ## Project Workflow
 
-1.Load the customer feedback dataset.
-2.Explore and understand the dataset.
+** 1.Load the customer feedback dataset. **
+** 2.Explore and understand the dataset. **
 3.Check the distribution of feedback categories.
 4.Preprocess the text data.
 5.Convert text into numerical features using TF-IDF Vectorization.
