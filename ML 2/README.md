@@ -1,228 +1,294 @@
-# Amazon E-Commerce Sales Analysis & Price Prediction using Machine Learning
+# Customer Segmentation using RFM Analysis and K-Means Clustering
 
-## Project Overview
+## 📌 Project Overview
 
-This project focuses on analyzing Amazon e-commerce data and building a Machine Learning model to predict product prices using Linear Regression.
+This project performs customer segmentation using RFM (Recency, Frequency, Monetary) analysis and K-Means clustering.
 
-The project uses a large-scale Amazon e-commerce dataset containing product details, customer information, sales information, ratings, discounts, and transaction details. Data preprocessing, exploratory data analysis, visualization, and predictive modeling are performed using Python.
+The sales transaction data is cleaned and prepared before calculating customer-level RFM metrics. The RFM values are then standardized and used with K-Means clustering to group customers based on their purchasing behavior.
 
----
-
-## Objectives
-
-- Analyze Amazon e-commerce sales trends.
-- Clean and preprocess large-scale e-commerce data.
-- Handle missing values and categorical data.
-- Perform sales trend analysis.
-- Identify top-performing brands.
-- Build a Machine Learning model to predict product prices.
-- Evaluate model performance using regression metrics.
+The project also evaluates the clustering results using Silhouette Score and Davies-Bouldin Index and visualizes the resulting customer clusters.
 
 ---
 
-## Technologies Used
+## 🎯 Objectives
 
+- Clean and preprocess sales transaction data.
+- Remove invalid and cancelled transactions.
+- Calculate the total transaction amount.
+- Perform customer-level RFM analysis.
+- Standardize RFM features.
+- Segment customers using K-Means clustering.
+- Determine a suitable number of clusters using the Elbow Method.
+- Evaluate clustering performance.
+- Visualize customer segments and summarize cluster characteristics.
+
+---
+
+## 🛠️ Technologies Used
 - Python
-- Jupyter Notebook
 - Pandas
 - NumPy
 - Matplotlib
+- Seaborn
 - Scikit-learn
+- Google Colab
 
 ---
 
-## Machine Learning Algorithm
+## 📂 Dataset
 
-### Linear Regression
+The project uses a sales transaction dataset containing information such as:
 
-Linear Regression is used to predict the final product price based on various product and customer-related features.
+- Customer ID
+- Invoice
+- Invoice Date
+- Quantity
+- Price
 
-### Features Used
+The dataset is loaded from a CSV file.
 
-- Category
-- Subcategory
-- Brand
-- Product Price
-- Discount
-- Rating
-- Review Count
-- Stock Availability
-- Seller Rating
-- Shipping Time
-- Location
-- Device Type
-- Payment Method
-- Delivery Status
-- Return Status
-- Purchase Date Information
+## 🔄 Project Workflow
 
-### Target Variable
+```text
+Sales Transaction Dataset
+          ↓
+Data Loading
+          ↓
+Data Exploration
+          ↓
+Data Cleaning
+          ↓
+Remove Cancelled Transactions
+          ↓
+Remove Invalid Transactions
+          ↓
+Remove Duplicates
+          ↓
+Calculate Total Amount
+          ↓
+RFM Analysis
+          ↓
+Feature Scaling
+          ↓
+Elbow Method
+          ↓
+K-Means Clustering
+          ↓
+Cluster Evaluation
+          ↓
+Customer Cluster Visualization
+          ↓
+Cluster Summary
+```
+---
 
-- Final Price
+## 🧹 Data Cleaning
+
+The following preprocessing steps were performed:
+
+1. Missing Customer IDs
+
+Records without a Customer ID were removed.
+
+2. Cancelled Invoices
+
+Cancelled invoices were identified using the invoice information and removed from the dataset.
+
+3. Invalid Transactions
+
+Transactions with:
+
+Quantity ≤ 0
+Price ≤ 0
+
+were removed.
+
+4. Duplicate Records
+
+Duplicate transaction records were removed.
+
+### 💰 Total Amount Calculation
+
+A new TotalAmount column was created:
+```text
+df["TotalAmount"] = df["Quantity"] * df["Price"]
+```
+
+This represents the total value of each transaction.
+
+### 📊 RFM Analysis
+
+RFM analysis was performed at the customer level.
+
+Recency
+
+Measures how recently a customer made a purchase.
+```text
+Recency = Reference Date - Last Purchase Date
+```
+
+A lower Recency value indicates that the customer purchased more recently.
+
+Frequency
+
+Measures how often a customer made purchases.
+
+In this project, frequency is calculated using the number of unique invoices.
+
+Monetary
+
+Measures the total amount spent by the customer.
+
+Monetary = Sum of TotalAmount
+
+The three metrics are calculated using customer-level aggregation:
+
+```text
+rfm = df.groupby("Customer ID").agg(
+    Recency=("InvoiceDate",
+             lambda x: (reference_date - x.max()).days),
+    Frequency=("Invoice", "nunique"),
+    Monetary=("TotalAmount", "sum")
+)
+```
+### ⚖️ Feature Scaling
+
+The RFM features are standardized using StandardScaler:
+
+```text
+features = ["Recency", "Frequency", "Monetary"]
+
+scaler = StandardScaler()
+
+rfm_scaled = scaler.fit_transform(rfm[features])
+```
+
+Scaling ensures that features with different numerical ranges can be used effectively by the clustering algorithm.
+
+### 🤖 K-Means Clustering
+
+K-Means clustering is used to divide customers into groups based on their RFM characteristics.
+
+The project initially evaluates different values of K using the Elbow Method.
+
+```text
+for k in range(2, 11):
+    model = KMeans(
+        n_clusters=k,
+        random_state=42,
+        n_init=10
+    )
+
+    model.fit(rfm_scaled)
+    inertia.append(model.inertia_)
+```
+
+The final clustering model in the notebook uses:
+
+n_clusters = 2
+
+### 📉 Elbow Method
+
+The Elbow Method is used to analyze the relationship between:
+
+Number of clusters
+Inertia
+
+The resulting graph helps identify a suitable number of clusters for customer segmentation.
+
+### 📏 Model Evaluation
+
+Two clustering evaluation metrics are used.
+
+Silhouette Score
+
+The Silhouette Score measures how well customers are separated between clusters.
+
+```text
+silhouette = silhouette_score(
+    rfm_scaled,
+    rfm["Cluster"]
+)
+```
+Davies-Bouldin Index
+
+The Davies-Bouldin Index evaluates the similarity between clusters.
+
+```text
+db_index = davies_bouldin_score(
+    rfm_scaled,
+    rfm["Cluster"]
+)
+```
+
+### 📈 Customer Cluster Visualization
+
+Customer segments are visualized using:
+
+Frequency on the X-axis
+Monetary on the Y-axis
+Cluster represented using different plot groups
+```text
+plt.scatter(
+    rfm["Frequency"],
+    rfm["Monetary"],
+    c=rfm["Cluster"]
+)
+```
+This helps visually understand differences in customer purchasing behavior.
+
+### 📋 Cluster Summary
+
+The average RFM values for each customer segment are calculated:
+
+```text
+cluster_summary = rfm.groupby("Cluster")[
+    ["Recency", "Frequency", "Monetary"]
+].mean()
+```
+
+This summary can be used to understand the characteristics of each customer group.
 
 ---
 
-## Project Workflow
+## 💡 Business Applications
 
-### 1. Data Collection
+Customer segmentation can help businesses:
 
-The Amazon e-commerce dataset is loaded using Pandas.
-
-Dataset contains:
-
-- Product details
-- Customer details
-- Sales information
-- Ratings and reviews
-- Transaction information
+- Identify recently active customers.
+- Identify frequent customers.
+- Identify high-value customers.
+- Develop targeted marketing campaigns.
+- Improve customer retention strategies.
+- Identify different customer purchasing patterns.
+- Personalize offers and promotions.
 
 ---
 
-### 2. Data Preprocessing
+## 📁 Project Structure
 
-Performed data cleaning operations:
-
-- Checking dataset structure
-- Handling missing values
-- Filling numerical missing values using mean
-- Filling categorical missing values using mode
-- Converting date columns into datetime format
-- Encoding categorical variables using Label Encoder
-
----
-
-### 3. Exploratory Data Analysis
-
-Performed analysis using visualizations:
-
-- Monthly sales trend analysis
-- Top 10 brands based on sales
-- Product price distribution analysis
-
-Visualization libraries used:
-
-- Matplotlib
-
----
-
-### 4. Feature Selection
-
-Selected important features for training the Machine Learning model.
-
-Category
-Brand
-Price
-Discount
-Rating
-Review Count
-Stock
-Seller Rating
-Shipping Time
-Location
-Device
-Payment Method
-Return Status
-Delivery Status
-Date Features
-
-
----
-
-### 5. Model Training
-
-Dataset is divided into:
-
-- Training Data: 80%
-- Testing Data: 20%
-
-Machine Learning Model:
-
-
----
-
-### 6. Model Evaluation
-
-The model performance is evaluated using:
-
-### R2 Score
-
-Measures how well the model explains the variation in price prediction.
-
-### MAE (Mean Absolute Error)
-
-Measures average prediction error.
-
-### MSE (Mean Squared Error)
-
-Measures squared prediction errors.
-
-### RMSE (Root Mean Squared Error)
-
-Measures prediction accuracy.
-
----
-
-## Results
-
-The model predicts product prices based on different e-commerce attributes.
-
-The evaluation metrics generated:
-
-- R2 Score
-- MAE
-- MSE
-- RMSE
-- Model Accuracy Percentage
-
-The project also generates:
-
-- Monthly sales trend visualization
-- Actual vs Predicted price comparison graph
-- Top brands sales analysis
-
----
-
-## Project Structure
-
-Amazon-Price-Prediction/
+```text
+Customer-Segmentation/
 │
-├── Amazon_Ecommerce_Analysis.ipynb
-│
-├── README.md
-│
-└── Dataset/
-└── amazon_ecommerce_1M.csv
+├── Customer_Segmentation.ipynb
+├── sales2.xlsx - Sheet1.csv
+└── README.md
+```
+---
+## 🚀 Future Enhancements
 
+- Experiment with different numbers of clusters.
+- Create meaningful customer segment names such as High-Value, Loyal, and At-Risk based on cluster characteristics.
+- Add additional customer behavior features.
+- Build an interactive Power BI dashboard.
+- Compare K-Means with other clustering algorithms.
+- Automate customer segmentation for new transaction data.
 
 ---
 
-## How to Run the Project
-
-Step 1: Clone Repository
-[ML Task 2](https://github.com/Madhumidha4310/Machine-Learning/tree/639594b867a8e52eab02d4140fbd3d385c604e0d/ML%20Task%202)
-
-Step 2: Install Required Libraries
-pip install pandas numpy matplotlib scikit-learn
-
-Step 3: Open Jupyter Notebook
-
-jupyter notebook
-
-Step 4:
-Open the notebook file and run all cells.
-
-## Future Improvements
-
-Implement advanced ML algorithms like Random Forest and XGBoost.
-Create an interactive dashboard using Power BI or Streamlit.
-Perform customer segmentation.
-Build a real-time price prediction application.
-Improve prediction accuracy using hyperparameter tuning.
-
-## Author
+## 👩‍💻 Author
 
 Madhumidha E
 
-Bachelor of Computer Applications (BCA)
-
-Kamaraj College
+Skills demonstrated:
+Python • Pandas • NumPy • Data Cleaning • RFM Analysis • K-Means Clustering • Scikit-learn • Data Visualization • Machine Learning
