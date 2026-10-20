@@ -132,13 +132,12 @@ This means rows whose original label is 0 become target class 1, while all other
 ```
 project/
 ├── decision_tree.py
-├── Decision_Tree.ipynb
 ├── PhiUSIIL_Phishing_URL_Dataset - PhiUSIIL_Phishing_URL_Dataset.csv
 └── README.md
 ```
 
 ---
 
-## 👩‍💻 Author
+## Author
 
 Madhumidha E
